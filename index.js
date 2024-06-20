@@ -11,7 +11,9 @@ const io = new Server(server);
 //socket
 
 io.on("connection", (client) => {
-  console.log("A new user has connected ", client.id);
+  client.on("user-message", (message) => {
+    io.emit("message", message);
+  });
 });
 
 app.use(express.static(path.resolve("./public")));
