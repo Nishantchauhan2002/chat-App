@@ -3,7 +3,16 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const PORT = 4042;
+const { Server } = require("socket.io");
+const { Socket } = require("dgram");
 const server = http.createServer(app);
+const io = new Server(server);
+
+//socket
+
+io.on("connection", (client) => {
+  console.log("A new user has connected ", client.id);
+});
 
 app.use(express.static(path.resolve("./public")));
 
