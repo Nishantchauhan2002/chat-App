@@ -10,8 +10,8 @@ const io = new Server(server);
 
 //socket
 
-io.on("connection", (client) => {
-  client.on("user-message", (message) => {
+io.on("connection", (socket) => {
+  socket.on("user-message", (message) => {
     io.emit("message", message);
   });
 });
